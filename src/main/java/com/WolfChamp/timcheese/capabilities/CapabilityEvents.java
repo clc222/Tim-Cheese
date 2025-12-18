@@ -11,6 +11,20 @@ import net.minecraftforge.fml.common.Mod;
 public class CapabilityEvents {
 
     @SubscribeEvent
+    public static void onLogin(PlayerEvent.PlayerLoggedInEvent event) {
+        if (event.getEntity() instanceof ServerPlayer sp) {
+            ModPackets.sync(sp);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onRespawn(PlayerEvent.PlayerRespawnEvent event) {
+        if (event.getEntity() instanceof ServerPlayer sp) {
+            ModPackets.sync(sp);
+        }
+    }
+
+    @SubscribeEvent
     public static void attachCaps(AttachCapabilitiesEvent<Entity> event) {
         if (event.getObject() instanceof Player) {
             event.addCapability(RaceProvider.ID, new RaceProvider());
