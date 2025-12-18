@@ -3,13 +3,13 @@ package com.WolfChamp.timcheese.capabilities;
 import net.minecraft.nbt.CompoundTag;
 
 public class CheseData implements IChese {
-    private int sight = 0;
-    private int touch = 0;
-    private int mind  = 0;
+    private int sight;
+    private int touch;
+    private int mind;
 
     @Override public int getSight() { return sight; }
     @Override public int getTouch() { return touch; }
-    @Override public int getMind()  { return mind;  }
+    @Override public int getMind()  { return mind; }
 
     @Override public void setSight(int v) { sight = Math.max(0, v); }
     @Override public void setTouch(int v) { touch = Math.max(0, v); }
@@ -31,8 +31,8 @@ public class CheseData implements IChese {
     }
 
     public void copyFrom(CheseData other) {
-        this.sight = other.sight;
-        this.touch = other.touch;
-        this.mind  = other.mind;
+        sight = other.sight;
+        touch = other.touch;
+        mind  = other.mind;
     }
 }

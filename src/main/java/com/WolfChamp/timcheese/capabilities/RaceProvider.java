@@ -8,31 +8,23 @@ import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.common.util.LazyOptional;
 
 public class RaceProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
-    public static final ResourceLocation ID = new ResourceLocation("timcheese", "race");
+
+    public static final ResourceLocation ID =
+            new ResourceLocation("timcheese", "race");
 
     private final RaceData data = new RaceData();
     private final LazyOptional<IRace> opt = LazyOptional.of(() -> data);
 
     @Override
-    public <T> LazyOptional<T> getCapability(net.minecraftforge.common.capabilities.Capability<T> cap, Direction side) {
+    public <T> LazyOptional<T> getCapability(
+            net.minecraftforge.common.capabilities.Capability<T> cap,
+            Direction side
+    ) {
         return cap == ModCapabilities.RACE ? opt.cast() : LazyOptional.empty();
     }
 
-    @Override
-    public CompoundTag serializeNBT() {
-        return data.serializeNBT();
-    }
+    @Override public CompoundTag serializeNBT() { return data.serializeNBT(); }
+    @Override public void deserializeNBT(CompoundTag nbt) { data.deserializeNBT(nbt); }
 
-    @Override
-    public void deserializeNBT(CompoundTag nbt) {
-        data.deserializeNBT(nbt);
-    }
-
-    public RaceData getRaw() {
-        return data;
-    }
-
-    public void invalidate() {
-        opt.invalidate();
-    }
+    public void invalidate() { opt.invalidate(); }
 }

@@ -3,7 +3,7 @@ package com.WolfChamp.timcheese.capabilities;
 import net.minecraft.nbt.CompoundTag;
 
 public class RaceData implements IRace {
-    private RaceType race = RaceType.AVIAN; // default; change if you want
+    private RaceType race = RaceType.HUMAN;
 
     @Override
     public RaceType getRace() {
@@ -12,10 +12,9 @@ public class RaceData implements IRace {
 
     @Override
     public void setRace(RaceType race) {
-        this.race = (race == null) ? RaceType.AVIAN : race;
+        this.race = (race == null) ? RaceType.HUMAN : race;
     }
 
-    // ---- Serialization ----
     public CompoundTag serializeNBT() {
         CompoundTag tag = new CompoundTag();
         tag.putString("race", race.name());
@@ -24,11 +23,10 @@ public class RaceData implements IRace {
 
     public void deserializeNBT(CompoundTag tag) {
         if (tag == null) return;
-        String s = tag.getString("race");
         try {
-            this.race = RaceType.valueOf(s);
-        } catch (Exception ignored) {
-            this.race = RaceType.AVIAN;
+            race = RaceType.valueOf(tag.getString("race"));
+        } catch (Exception e) {
+            race = RaceType.HUMAN;
         }
     }
 

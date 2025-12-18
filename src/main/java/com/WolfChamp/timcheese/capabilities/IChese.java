@@ -9,7 +9,7 @@ public interface IChese {
     void setTouch(int v);
     void setMind(int v);
 
-    default void addSight(int amt) { setSight(getSight() + amt); }
-    default void addTouch(int amt) { setTouch(getTouch() + amt); }
-    default void addMind(int amt)  { setMind(getMind() + amt); }
+    default void addSight(int v) { setSight(getSight() + v); }
+    default void addTouch(int v) { setTouch(getTouch() + v); }
+    default void addMind(int v)  { setMind(getMind() + v); }
 }
