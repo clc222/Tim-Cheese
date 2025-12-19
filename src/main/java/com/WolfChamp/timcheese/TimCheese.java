@@ -1,5 +1,6 @@
 package com.WolfChamp.timcheese;
 
+import com.WolfChamp.timcheese.client.ModKeybinds;
 import com.WolfChamp.timcheese.command.CheseCommand;
 import com.WolfChamp.timcheese.command.RaceCommand;
 import com.WolfChamp.timcheese.network.ModPackets;
@@ -15,16 +16,12 @@ public class TimCheese {
     public static final String MODID = "timcheese";
 
     public TimCheese() {
-        // MOD event bus (lifecycle events)
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        // Register network packets
         ModPackets.register();
+        modBus.register(ModKeybinds.class);
     }
 
-    /**
-     * Forge event bus (gameplay events)
-     */
     @Mod.EventBusSubscriber(modid = MODID)
     public static class ForgeEvents {
 

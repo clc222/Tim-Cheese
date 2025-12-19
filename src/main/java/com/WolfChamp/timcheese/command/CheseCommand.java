@@ -20,27 +20,21 @@ public class CheseCommand {
                                                 Commands.literal("sight")
                                                         .then(
                                                                 Commands.argument("amount", IntegerArgumentType.integer(1))
-                                                                        .executes(ctx -> {
-                                                                            return add(ctx, "sight");
-                                                                        })
+                                                                        .executes(ctx -> add(ctx, "sight"))
                                                         )
                                         )
                                         .then(
                                                 Commands.literal("touch")
                                                         .then(
                                                                 Commands.argument("amount", IntegerArgumentType.integer(1))
-                                                                        .executes(ctx -> {
-                                                                            return add(ctx, "touch");
-                                                                        })
+                                                                        .executes(ctx -> add(ctx, "touch"))
                                                         )
                                         )
                                         .then(
                                                 Commands.literal("mind")
                                                         .then(
                                                                 Commands.argument("amount", IntegerArgumentType.integer(1))
-                                                                        .executes(ctx -> {
-                                                                            return add(ctx, "mind");
-                                                                        })
+                                                                        .executes(ctx -> add(ctx, "mind"))
                                                         )
                                         )
                         )
@@ -51,7 +45,7 @@ public class CheseCommand {
             com.mojang.brigadier.context.CommandContext<CommandSourceStack> ctx,
             String type
     ) {
-        ServerPlayer player = ctx.getSource().getPlayerOrException();
+        ServerPlayer player = ctx.getSource().getPlayer();
         int amt = IntegerArgumentType.getInteger(ctx, "amount");
 
         player.getCapability(ModCapabilities.CHESE).ifPresent(chese -> {
@@ -70,6 +64,7 @@ public class CheseCommand {
                 ),
                 false
         );
+
         return 1;
     }
 }

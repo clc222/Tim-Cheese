@@ -2,9 +2,9 @@ package com.WolfChamp.timcheese.client;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
+import net.minecraftforge.client.gui.overlay.ForgeGui;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -18,12 +18,18 @@ public class ModHud {
     @SubscribeEvent
     public static void register(RegisterGuiOverlaysEvent event) {
         event.registerAboveAll(
-                new ResourceLocation("timcheese", "chese_hud"),
+                "chese_hud",
                 ModHud::render
         );
     }
 
-    private static void render(GuiGraphics gui, float partialTick, int width, int height) {
+    private static void render(
+            ForgeGui forgeGui,
+            GuiGraphics gui,
+            float partialTick,
+            int width,
+            int height
+    ) {
         Minecraft mc = Minecraft.getInstance();
 
         int x = 10;

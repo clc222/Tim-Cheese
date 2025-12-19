@@ -10,6 +10,7 @@ import net.minecraftforge.network.simple.SimpleChannel;
 public class ModPackets {
 
     private static final String PROTOCOL = "1";
+
     public static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(
             new ResourceLocation("timcheese", "main"),
             () -> PROTOCOL,
@@ -20,6 +21,10 @@ public class ModPackets {
     private static int id = 0;
 
     public static void register() {
+
+        // =========================
+        // SERVER → CLIENT SYNC
+        // =========================
         CHANNEL.registerMessage(
                 id++,
                 SyncChesePacket.class,
@@ -27,8 +32,22 @@ public class ModPackets {
                 SyncChesePacket::decode,
                 SyncChesePacket::handle
         );
+
+        // =========================
+        // CLIENT → SERVER AIR JUMP
+        // =========================
+        CHANNEL.registerMessage(
+                id++,
+                AirJumpPacket.class,
+                AirJumpPacket::encode,
+                AirJumpPacket::decode,
+                AirJumpPacket::handle
+        );
     }
 
+    // =========================
+    // HELPER: SYNC PLAYER DATA
+    // =========================
     public static void sync(ServerPlayer player) {
         player.getCapability(ModCapabilities.RACE).ifPresent(race ->
                 player.getCapability(ModCapabilities.CHESE).ifPresent(chese ->

@@ -15,6 +15,11 @@ public class RaceData implements IRace {
         this.race = (race == null) ? RaceType.HUMAN : race;
     }
 
+    @Override
+    public boolean hasWings() {
+        return race == RaceType.AVIAN;
+    }
+
     public CompoundTag serializeNBT() {
         CompoundTag tag = new CompoundTag();
         tag.putString("race", race.name());

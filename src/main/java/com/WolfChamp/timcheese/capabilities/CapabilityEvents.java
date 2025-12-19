@@ -6,6 +6,8 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraft.server.level.ServerPlayer;
+import com.WolfChamp.timcheese.network.ModPackets;
 
 @Mod.EventBusSubscriber(modid = "timcheese")
 public class CapabilityEvents {
